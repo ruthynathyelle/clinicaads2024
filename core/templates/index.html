@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Minha Clínica 2024 {% endblock %}
+
+{% block conteudo %}
+<header>
+    <h1>Minha Clínica</h1>
+</header>
+<article>
+    <a href="{% url 'relat_pacientes' %}" role="button" class="secondary">
+        Relatório Pacientes
+    </a>
+    <a href="{% url 'pacientesporconvenio' %}" role="button" class="secondary">
+        Pacientes por Convênio
+    </a>
+    <a href="{% url 'consulta_por_especialidade' %}" role="button" class="secondary">
+        Consultas por Especialidade
+    </a>
+    <a href="{% url 'relat_atendimento_por_especialidade' %}" role="button" class="secondary">
+        Pacientes por Especialidade por mês
+    </a>
+</article>
+{% endblock %}

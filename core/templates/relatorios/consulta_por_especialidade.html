@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Minha Clínica 2024 - Relatório de Consultas por Especialidade{% endblock %}
+
+{% block conteudo %}
+<article>
+    <h1>Relatório de Consultas por Especialidade</h1>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Data</th>
+                <th>Horário</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for consulta in consultas %}
+            <tr>
+                <td>{{ consulta.paciente.nome }}</td>
+                <td>{{ consulta.medico.nome }}</td>
+                <td>{{ consulta.data }}</td>
+                <td>{{ consulta.horario }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Não existem consultas cadastradas para esta especialidade</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <a href="{% url 'pdfconsulta_por_especialidade' %}?especialidade={{ especialidade }}" role="button" target="_blank">
+            Gerar PDF
+        </a>
+    </p>
+</article>
+{% endblock %}

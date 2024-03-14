@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório Pacientes</title>
+    <style>
+        h1{
+            text-align:center;
+            font-size: 2rem;
+            color: darkgreen;
+        }
+        tr, td, th{
+            border: 1px solid black;
+            border-colapse: colapse;
+            padding: 0.5em;
+        }
+
+        th{
+            text-align: left;
+			background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article>
+            <h1>Relatório de Pacientes</h1>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Idade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pacientes %}
+                    <tr>
+                        <td>{{ p.nome }}</td>
+                        <td>{{ p.telefone }}</td>
+                        <td>{{ p.cidade }}</td>
+                        <td>{{ p.idade }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Não existem pacientes cadastrados</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </article>
+    </main>
+</body>
+</html>
+

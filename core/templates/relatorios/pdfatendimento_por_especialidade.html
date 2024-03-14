@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios Atendimentos por Especialidade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+</head>
+
+<body>
+    <h1>Relatórios Atendimentos por Especialidade</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Especialidade</th>
+                <th>Mês</th>
+                <th>Ano</th>
+                <th>Quantidade de Pacientes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in atendimento_por_especialidade %}
+                {% for atendimento in item.atendimentos %}
+                    <tr>
+                        <td>{{ item.especialidade }}</td>
+                        <td>{{ atendimento.month }}</td>
+                        <td>{{ atendimento.year }}</td>
+                        <td>{{ atendimento.total }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <p>
+            <a href="{% url 'pdfatendimento_por_especialidade' %}" role="button">Gerar PDF</a>
+        </p>
+    </table>
+</body>
+
+</html>

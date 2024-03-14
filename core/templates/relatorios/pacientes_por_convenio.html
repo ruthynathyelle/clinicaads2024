@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Minha Clínica 2024 - Pacientes por Convênio{% endblock %}
+
+{% block conteudo %}
+<article>
+    <h1>Relatório de Pacientes por Convênio</h1>
+    {% if convenio %}
+        <h2>{{ convenio.nome }}</h2>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paciente in convenio.paciente_set.all %}
+                    <tr>
+                        <td>{{ paciente.nome }}</td>
+                        <td>{{ paciente.idade }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">Não existem pacientes cadastrados para este convênio</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Não há convênios cadastrados.</p>
+    {% endif %}
+    <p>
+        <a href="{% url 'RelatPdfPacientesPorConvenio' %}" role="button" target="_blank">
+            Gerar PDF
+        </a>
+    </p>
+</article>
+{% endblock %}

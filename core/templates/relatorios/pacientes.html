@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Minha Clínica 2024 - Relatório Pacientes {% endblock %}
+{% block conteudo %}
+        <article>
+            <h1>Relatório de Pacientes</h1>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Idade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pacientes %}
+                    <tr>
+                        <td>{{ p.nome }}</td>
+                        <td>{{ p.telefone }}</td>
+                        <td>{{ p.cidade }}</td>
+                        <td>{{ p.idade }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Não existem pacientes cadastrados</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>
+                <a href="{% url 'pdf_pacientes' %}" role="button" target="_blank">
+                    Gerar PDF
+                </a>
+            </p>
+        </article>
+{% endblock %}

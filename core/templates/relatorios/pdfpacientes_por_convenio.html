@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório Pacientes por Convênio</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: darkgreen;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article>
+            <h1>Relatório de Pacientes por Convênio</h1>
+            {% for convenio, pacientes in convenios.items %}
+            <h2>{{ convenio }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Idade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for paciente in pacientes %}
+                    <tr>
+                        <td>{{ paciente.nome }}</td>
+                        <td>{{ paciente.telefone }}</td>
+                        <td>{{ paciente.cidade }}</td>
+                        <td>{{ paciente.idade }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Não existem pacientes cadastrados para este convênio</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% empty %}
+            <p>Não há convênios cadastrados.</p>
+            {% endfor %}
+        </article>
+    </main>
+</body>
+</html>
